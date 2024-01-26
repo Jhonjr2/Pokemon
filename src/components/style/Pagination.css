@@ -73,5 +73,9 @@
     border-color: rgb(221, 52, 52);
 }
 
+.disable {
+    display: none;
+}
+
 
 

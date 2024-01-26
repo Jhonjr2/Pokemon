@@ -10,19 +10,18 @@ const PokedexPage = () => {
 
   const [inputValue, setInputValue] = useState('')
   const [typeSelect, setTypeSelect] = useState('allPokemon')
-  const url = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0'
+  const url = 'https://pokeapi.co/api/v2/pokemon?limit=200&offset=0'
   const [pokemons, getPokemons, getTypePokemon] = useFetch(url)
   const trainerName = useSelector(state => state.trainer)
 
   //pagination
-  const [residentPerPage, setResidentPerPage] = useState(3)
+  const [pokemonPerPage, setPokemonPerPage] = useState(8)
   const [currentPage, setCurrentPage] = useState(1)
 
   const totalPokemon = pokemons?.results.length 
-  const lasIndex = currentPage * residentPerPage
-  const firstIndex = lasIndex - residentPerPage
+  const lasIndex = currentPage * pokemonPerPage
+  const firstIndex = lasIndex - pokemonPerPage
 
- console.log(pokemons);
   useEffect(() => {
     if (typeSelect === 'allPokemon') {
       getPokemons()
@@ -39,6 +38,15 @@ const PokedexPage = () => {
     setInputValue(inputName.current.value.trim().toLowerCase())
   }
   const cbfilter = (e) => e.name.toLowerCase().includes(inputValue)
+ 
+  const selectRef = useRef()
+
+  const handlePerPage = (e) => {
+    e.preventDefault()
+    setPokemonPerPage(selectRef.current.value)
+    setCurrentPage(1)
+
+  }
 
   return (
     <div className='pokedexPage'>
@@ -52,7 +60,17 @@ const PokedexPage = () => {
           <button className='btm_pokedexPage'>Buscar</button>
         </form>
         <SelectType setTypeSelect={setTypeSelect} />
-
+        <span className='title_PokemonPerPage'>Pokemon por página</span>
+        <select className='selectPerPage' defaultValue='8' ref={selectRef} onChange={handlePerPage}>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+          <option value="10">10</option>
+          <option value="12">12</option>
+          
+        </select>
       </div>
       <div className='pokedexPage_containerCard'>
         {
@@ -66,7 +84,7 @@ const PokedexPage = () => {
       </div>
 
       <Pagination
-        residentPerPage={residentPerPage}
+        pokemonPerPage={pokemonPerPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         totalPokemon={totalPokemon}
