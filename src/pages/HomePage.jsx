@@ -27,7 +27,7 @@ const HomePage = () => {
                 <h2 className="homePage_title1">¡Hi trainer!</h2>
                 <p className="homePage_title2"> To star this app, give  me you trainer name</p>
                 <form className="form" onSubmit={handleSubmit}>
-                    <input className="homPage_input" ref={inputTrainer} type="text" />
+                    <input className="homePage_input" ref={inputTrainer} type="text" />
                     <button className="homePage_btn">Catch  all</button>
                 </form>
             </div>

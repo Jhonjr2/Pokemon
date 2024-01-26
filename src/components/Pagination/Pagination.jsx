@@ -31,11 +31,11 @@ const Pagination = ({ pokemonPerPage, currentPage, setCurrentPage, totalPokemon 
                 <ul className="pagination-list">
                     <li>
                         <a
-                            className={`pagination-link  ${1 === currentPage || currentPage<6 ?  'disable' : ''}`}
+                            className={`pagination-link  ${1 === currentPage || currentPage < 6 ? 'disable' : ''}`}
                             onClick={() => onSpecificPage(1)}>1
                         </a>
                     </li>
-                    <li className={`puntos ${1 === currentPage || currentPage<6 ?  'disable' : ''}`}>...</li>
+                    <li className={`puntos ${1 === currentPage || currentPage < 6 ? 'disable' : ''}`}>...</li>
                     {
                         currentPage <= 5 ?
                             pageNumbers.slice(0, 6).map(noPage => (
@@ -70,18 +70,15 @@ const Pagination = ({ pokemonPerPage, currentPage, setCurrentPage, totalPokemon 
                             ))
                             :
                             currentPage < pageNumbers.length - 4 ?
-
                                 pageNumbers.slice(pageNumbers.length - 1, pageNumbers.length).map(noPage => (
-                                    <>
-                                    <li>...</li>
-                                   <li key={noPage}>
-                                        
+                                    <li className='numberPageFinally' key={noPage} >
+                                        <li>...</li>
                                         <a
                                             className={`pagination-link ${noPage === currentPage ? 'is-current' : ''}`}
                                             onClick={() => onSpecificPage(noPage)}>{noPage}
                                         </a>
                                     </li>
-                                    </>
+
                                 )) : ''
                     }
 

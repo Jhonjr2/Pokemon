@@ -26,7 +26,7 @@ const PokemonPage = () => {
 
       <div className="Sections_pokemonPage">
         <section className="container1_pokemonPage">
-          <div className="background_imageContainer1">
+          <div className={`background_imageContainer1 ${pokemon?.types[0].type.name}`}>
             <img className="image_Container1" src={pokemon?.sprites.other['official-artwork'].front_default} alt="pokemon" />
           </div>
           <div className="info_pokemonPage">
@@ -34,7 +34,7 @@ const PokemonPage = () => {
               <h3>#<span>{pokemon?.id}</span></h3>
             </div>
             <div className="hr_name">
-              <hr className="hr"/>
+              <hr className="hr_name"/>
               <h2 className="namePokemon_Container1">{pokemon?.name}</h2>
               <hr className="hr_name" />
             </div>
@@ -44,7 +44,7 @@ const PokemonPage = () => {
             </div>
             <div className="info2_container1">
               <div className="type_container1">
-                <h3>Tipo</h3>
+                <h3 className="text_typeAndHabilid">Tipo</h3>
                 <ul className={`types ${pokemon?.types[0].type.name}`}>
                   {
                     pokemon?.types.map(typeInfo => (
@@ -56,7 +56,7 @@ const PokemonPage = () => {
                 </ul>
               </div>
               <div className="habilidades_container1">
-                <h3>Habilidades</h3>
+                <h3 className="text_typeAndHabilid">Habilidades</h3>
                 <ul className={`habilidades`}>
                   {
                     pokemon?.abilities.map(abilitieInfo => (
@@ -73,11 +73,11 @@ const PokemonPage = () => {
           <div className="stats_container1">
             <div className="stats_title_container1">
               <h1>Stats</h1>
-              <hr />
+              <hr  />
               <img src="../icon_poke.png" alt="icon" />
             </div>
             <div>
-              <ul>
+              <ul className="stats_general">
                 {
                   pokemon?.stats.map(e =>
 
@@ -86,8 +86,7 @@ const PokemonPage = () => {
                         {e.stat.name}
                         <p>{e.base_stat} /150</p>
                       </li>
-                      <div className="progress_bar"></div>
-                      {/* <progress max={155} value={e.base_stat} className="progress_bar"></progress> */}
+                      <progress max={155} value={e.base_stat} className={`progress_bar ${pokemon?.types[0]?.type.name || ''}`}></progress>
                     </div>
                   )
                 }
@@ -96,14 +95,16 @@ const PokemonPage = () => {
           </div>
         </section>
 
-        <section className="container2_pokemonPage">
+        
+      </div>
+      <section className="container2_pokemonPage">
           <div className="movements_title_container2">
             <h1>Movements</h1>
             <hr />
             <img src="../icon_poke.png" alt="icon" />
           </div>
-          <div className="move_list_container2">
-            <ul>
+          <div>
+            <ul className="move_list_container2">
               {
                 pokemon?.moves.map(e => (
                   <li className="move_container2" key={e.move.url}>{e.move.name}</li>
@@ -113,7 +114,6 @@ const PokemonPage = () => {
             </ul>
           </div>
         </section>
-      </div>
     </div>
   )
 }

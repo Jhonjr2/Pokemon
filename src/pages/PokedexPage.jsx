@@ -10,7 +10,7 @@ const PokedexPage = () => {
 
   const [inputValue, setInputValue] = useState('')
   const [typeSelect, setTypeSelect] = useState('allPokemon')
-  const url = 'https://pokeapi.co/api/v2/pokemon?limit=200&offset=0'
+  const url = 'https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0'
   const [pokemons, getPokemons, getTypePokemon] = useFetch(url)
   const trainerName = useSelector(state => state.trainer)
 
