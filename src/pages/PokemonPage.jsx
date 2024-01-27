@@ -77,7 +77,7 @@ const PokemonPage = () => {
               <img src="../icon_poke.png" alt="icon" />
             </div>
             <div>
-              <ul className="stats_general">
+              <ul className={`stats_general `}>
                 {
                   pokemon?.stats.map(e =>
 
@@ -86,7 +86,7 @@ const PokemonPage = () => {
                         {e.stat.name}
                         <p>{e.base_stat} /150</p>
                       </li>
-                      <progress max={155} value={e.base_stat} className={`progress_bar ${pokemon?.types[0]?.type.name || ''}`}></progress>
+                      <progress className={`progress_bar ${pokemon?.types[0].type.name}`} max={155} value={e.base_stat} ></progress>
                     </div>
                   )
                 }
